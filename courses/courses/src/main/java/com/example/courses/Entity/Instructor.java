@@ -1,0 +1,30 @@
+package com.example.courses.Entity;
+
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.util.Date;
+
+@Data
+@Builder
+@AllArgsConstructor
+@Entity
+@NoArgsConstructor
+public class Instructor {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    Integer id;
+    String Grade;
+    String Subject;
+    Date CreateDate;
+    Date UpdateDate;
+    Boolean isActive;
+    @OneToOne
+    @JoinColumn(name =  "courses")
+    Courses courses;
+    @ManyToOne (cascade = CascadeType.ALL)
+    Department department;
+}
